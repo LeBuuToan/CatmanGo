@@ -9,6 +9,8 @@ public class SetCountDown : MonoBehaviour
     public void SetCountDownNow()
     {
         gc = GameObject.Find("GameController").GetComponent<GameController>();
+
         gc.counterDownDone = true;
+          
     }
 }

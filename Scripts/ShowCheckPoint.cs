@@ -7,7 +7,7 @@ public class ShowCheckPoint : MonoBehaviour
     private PlayerCheckPoint playerCP;
 
     public GameObject checkPoint;
-    int oneCP;
+    int oneCP = 0;
     float timeCount = 2;
 
     void Start()
@@ -15,15 +15,15 @@ public class ShowCheckPoint : MonoBehaviour
         playerCP = FindObjectOfType<PlayerCheckPoint>();
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         CheckPoint();
 
-        if (playerCP.flag2Position == true &&  oneCP == 0)
-        {           
+        if ((playerCP.flag1Position == true || playerCP.flag2Position == true) && oneCP == 0)
+        { 
             checkPoint.SetActive(true);
-            timeCount -= Time.deltaTime;    
-        }      
+            timeCount -= Time.deltaTime;
+        }          
     }
 
     //Dieu khien hien thi Check Point
@@ -32,8 +32,8 @@ public class ShowCheckPoint : MonoBehaviour
         if (timeCount <= 0)
         {           
             checkPoint.SetActive(false);
-            oneCP += 1;
-        }       
+            oneCP = 1;
+        }
     }
 }
 

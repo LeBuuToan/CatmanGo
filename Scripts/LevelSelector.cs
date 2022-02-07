@@ -13,7 +13,7 @@ public class LevelSelector : MonoBehaviour
     {
         int levelAt = PlayerPrefs.GetInt("levelAT", 2);
 
-        for(int i =0; i < lvlButtons.Length; i++)
+        for (int i = 0; i < lvlButtons.Length; i++)
         {
             if (i + 2 > levelAt)
                 lvlButtons[i].interactable = false;
@@ -23,7 +23,7 @@ public class LevelSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Level1_Button()
@@ -68,7 +68,7 @@ public class LevelSelector : MonoBehaviour
 
     public void Level9_Button()
     {
-       //SceneManager.LoadScene("Level1");
+        //SceneManager.LoadScene("Level1");
     }
 
     public void Level10_Button()

@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
 
     //Dieu khien Player
     public void DragMove()
-    { 
+    {   
         if (Input.touchCount > 0)
         {                
             Touch touch = Input.GetTouch(0);

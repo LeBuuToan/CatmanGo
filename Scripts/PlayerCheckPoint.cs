@@ -6,14 +6,13 @@ public class PlayerCheckPoint : MonoBehaviour
 {
     private Player player;
 
-    public GameObject flag1;
-    public bool flag1Position = false;
-    Vector3 spawnPoint1;
+    public GameObject[] flag;
 
-    public GameObject flag2;
-    public bool flag2Position = false;
+    Vector3 spawnPoint1;
+    public bool flag1Position;
+
     Vector3 spawnPoint2;
-    
+    public bool flag2Position;
 
     // Start is called before the first frame update
     void Start()
@@ -43,18 +42,18 @@ public class PlayerCheckPoint : MonoBehaviour
     {
         if(other.gameObject.CompareTag("CheckPoint1"))
         {
-            spawnPoint1 = gameObject.transform.position;
             flag1Position = true;
-            spawnPoint1 = flag1.transform.position;
+            spawnPoint1 = gameObject.transform.position;        
+            spawnPoint1 = flag[0].transform.position;
         }
 
         if (other.gameObject.CompareTag("CheckPoint2"))
         {
-            spawnPoint2 = gameObject.transform.position;
             flag1Position = false;
             flag2Position = true;
-            spawnPoint2 = flag2.transform.position;
-            Destroy(flag1);
+            spawnPoint2 = gameObject.transform.position;
+            spawnPoint2 = flag[1].transform.position;
+            Destroy(flag[0]);
         }
     }
 }
