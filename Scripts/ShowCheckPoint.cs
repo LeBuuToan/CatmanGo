@@ -7,7 +7,7 @@ public class ShowCheckPoint : MonoBehaviour
     private PlayerCheckPoint playerCP;
 
     public GameObject checkPoint;
-    int oneCP = 0;
+    //int oneCP;
     float timeCount = 2;
 
     void Start()
@@ -19,7 +19,7 @@ public class ShowCheckPoint : MonoBehaviour
     {
         CheckPoint();
 
-        if ((playerCP.flag1Position == true || playerCP.flag2Position == true) && oneCP == 0)
+        if (playerCP.flag2Position == true && timeCount > 0)
         { 
             checkPoint.SetActive(true);
             timeCount -= Time.deltaTime;
@@ -32,7 +32,6 @@ public class ShowCheckPoint : MonoBehaviour
         if (timeCount <= 0)
         {           
             checkPoint.SetActive(false);
-            oneCP = 1;
         }
     }
 }
