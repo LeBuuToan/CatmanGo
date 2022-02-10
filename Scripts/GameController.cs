@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour
+public class GameController : Singleton<GameController>
 {
-    UIManager m_ui;
-    private Player player;
-
     public bool counterDownDone = false;
     public GameObject CountDownImage;
     public GameObject PlayerGo;
@@ -24,9 +21,6 @@ public class GameController : MonoBehaviour
     void Start()
     {
         m_spawnTime = 0;
-        m_ui = FindObjectOfType<UIManager>();
-        player = FindObjectOfType<Player>();
-
         Time.timeScale = 1f;
     }
 
@@ -37,7 +31,7 @@ public class GameController : MonoBehaviour
             m_spawnTime = 0;
             PlayerGo.SetActive(false);
             JumpButton.SetActive(false);
-            m_ui.showGameOverPanel(true);
+            UIManager.Instance.showGameOverPanel(true);
             return;
         }
 
@@ -53,7 +47,7 @@ public class GameController : MonoBehaviour
             m_spawnTime = spawnTime;
         }
 
-        if (player.run == true)
+        if (Player.Instance.run == true)
         {
             SwipeIconImage.SetActive(false);
         }

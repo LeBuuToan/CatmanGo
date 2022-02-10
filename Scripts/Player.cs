@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : Singleton<Player>
 {
-    private GameController gc;
-    private UIManager ui;
-
     public float spawnTime;
 
     float m_spawnTime;
@@ -34,12 +31,11 @@ public class Player : MonoBehaviour
     float timeCount = 2;
     public bool respawnPlayer = false;
 
+    public GameObject leftLegEF;
+    public GameObject rightLegEF;
     // Start is called before the first frame update
     void Start()
     {
-        gc = GameObject.Find("GameController").GetComponent<GameController>();
-        ui = GameObject.Find("UIManager").GetComponent<UIManager>();
-
         playerRb = GetComponent<Rigidbody>();
         myAudio = GetComponent<AudioSource>();
         m_spawnTime = 0;
@@ -49,7 +45,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gc.counterDownDone == false || ui.paused == true || gc.m_isGameover == true)
+        if (GameController.Instance.counterDownDone == false || UIManager.Instance.paused == true || GameController.Instance.m_isGameover == true)
         {
             m_spawnTime = 0;
             run = false;
@@ -135,8 +131,10 @@ public class Player : MonoBehaviour
 
         if (run == true)
         {
+            leftLegEF.SetActive(true);
+            rightLegEF.SetActive(true);
             anim.SetBool("isRun", true);
-           
+
             transform.position = new Vector3(
                    transform.position.x,
                    transform.position.y,
@@ -144,6 +142,8 @@ public class Player : MonoBehaviour
         }
         else if (run == false)
         {
+            leftLegEF.SetActive(false);
+            rightLegEF.SetActive(false);
             anim.SetBool("isRun", false);
         }
     }
@@ -190,7 +190,7 @@ public class Player : MonoBehaviour
     {
         try
         {
-            if (gc.counterDownDone == true && oneJump == 0)
+            if (GameController.Instance.counterDownDone == true && oneJump == 0)
             {              
                 oneJump += 1;
                 JumpControl();    

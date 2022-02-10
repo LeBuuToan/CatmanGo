@@ -4,22 +4,15 @@ using UnityEngine;
 
 public class ShowCheckPoint : MonoBehaviour
 {
-    private PlayerCheckPoint playerCP;
-
     public GameObject checkPoint;
     //int oneCP;
     float timeCount = 2;
-
-    void Start()
-    {
-        playerCP = FindObjectOfType<PlayerCheckPoint>();
-    }
 
     void FixedUpdate()
     {
         CheckPoint();
 
-        if (playerCP.flag2Position == true && timeCount > 0)
+        if (PlayerCheckPoint.Instance.flagPosition == 2 && timeCount > 0)
         { 
             checkPoint.SetActive(true);
             timeCount -= Time.deltaTime;
