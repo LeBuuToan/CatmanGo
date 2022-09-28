@@ -1,2 +1,2 @@
 # CatmanGo
-Scripts for game Catman Go
+Game Catman Go
